@@ -1,0 +1,225 @@
+styles:
+  main_title:
+    style:
+      name : 'main_title'
+      font:
+        name: 'Calibri'
+        size: 18
+        bold: False
+      border:
+        style: 'thin'
+        color: 'D9D9D9'
+        side: ['bottom']      
+      alignment:
+        horizontal: 'left'
+        vertical: 'center' 
+
+  sub_title:
+    style:
+      name : 'sub_title'
+      font:
+        name: 'Lucida Console'
+        size: 9
+        bold: False
+      alignment:
+        horizontal: 'left'
+        vertical: 'center'  
+
+  column_header: 
+    style:
+      name: 'column_header'
+      font:
+        name: 'Calibri'
+        size: 8
+        color: 'FFFFFF'
+      border:
+        style: 'thin'
+        color: 'EEECE1'
+        side: ['bottom', 'right', 'top']
+      fill:
+        patternType: 'darkDown'
+        start_color: '262626'
+        end_color: '262626'
+      alignment:
+        horizontal: 'left'
+        vertical: 'center'  
+  
+  group_header:
+   style:
+      name: 'group_header'
+      font:
+        name: 'Calibri'
+        size: 10        
+      fill:
+        patternType: 'darkDown'
+        start_color: 'F2F2F2'
+        end_color: 'F2F2F2'
+      alignment:
+        horizontal: 'left'
+        vertical: 'center'  
+
+  masterData:
+    style:
+      name: 'master_data'
+      font:
+        name: 'Calibri'
+        size: 10
+      border:
+        style: 'thin'
+        color: 'EEECE1'
+        side: ['bottom', 'right', 'top']   
+
+cells:
+  A1:
+    merge: 'A1:H1'
+    style:
+      use: 'main_title'   
+
+  A2:
+    style:
+      use : 'sub_title'
+  
+  B2:
+    style:
+      use : 'sub_title'
+
+dataset:
+  start: "A6"
+  break_fields:
+    fields: ['cardcode']
+    data: 
+      A:
+        field: 'cardcode'
+        style:
+          use: 'group_header'                        
+      B:
+        field: 'cardname'
+        merge: 'B%:G%'
+        style:
+          use: 'group_header'   
+      H:
+        field: 'phone'   
+        style:
+            font:
+              name: 'Calibri'
+              size: 10    
+              color: 'FFFFFF'    
+            fill:
+              patternType: 'darkDown'
+              start_color: '404040'
+              end_color: '404040'
+            alignment:
+              horizontal: 'center'
+              vertical: 'center' 
+  columns:  
+    A:            
+      width: 13
+      header: 
+        value: 'Título'
+        style: 
+          use: 'column_header'
+      data:
+        field: 'docnum'
+        style:
+          use: 'master_data'       
+      footer:
+        value: '/*'              
+        merge: 'A%:F%'
+        style: 
+          use: 'column_header'
+
+    B:  
+      width: 12.71
+      header: 
+        value: 'Lançamento'
+        style: 
+          use: 'column_header'
+      data:    
+        field: 'serial'
+        style:
+          use: 'master_data'                           
+    C:  
+      width: 12.71
+      header: 
+        value: 'Nota Fiscal'
+        style: 
+          use: 'column_header'
+      data:
+        field: 'serial'
+        style:
+          use: 'master_data'                              
+    D:  
+      width: 5.43
+      header:
+        value: 'Parcela'
+        style: 
+          use: 'column_header'
+          alignment:
+            horizontal: 'center'                                
+      data:
+        field: 'instnum'
+        style:
+          use: 'master_data'
+          alignment:
+            horizontal: 'center'                                              
+    E:
+      width: 12.5
+      header: 
+        value: 'Emissão'
+        style: 
+          use: 'column_header'
+      data:    
+        field: 'docdate'
+        style:
+          use: 'master_data'            
+          format: 'dd/mm/yyyy;@'
+          alignment:
+            horizontal: 'center'                               
+    F:  
+      width: 12.5
+      header: 
+        value: 'Vencimento'
+        style: 
+          use: 'column_header'
+      data:    
+        field: 'duedate'
+        style:
+          use: 'master_data'            
+          format: 'dd/mm/yyyy;@' 
+          alignment:
+            horizontal: 'center'                                
+    G:  
+      width: 17.43
+      header: 
+        value: 'Valor'
+        style: 
+          use: 'column_header'
+      data:
+        field: 'doctotal'
+        style:
+          use: 'master_data'                 
+          format: '_("R$ "* #,##0.00_);_("R$ "* (#,##0.00);_("R$ "* "-"??_);_(@_)' 
+          alignment:
+            horizontal: 'right'
+      footer:
+        formula: 'SUM'
+        style: 
+          use: 'column_header'
+          format: '_("R$ "* #,##0.00_);_("R$ "* (#,##0.00);_("R$ "* "-"??_);_(@_)' 
+          alignment:
+            horizontal: 'right'                                           
+    H:  
+      width: 27.57
+      header: 
+        value: 'Status Quitação'
+        style: 
+          use: 'column_header'
+      data:
+        field: 'status'
+        style:
+          use: 'master_data'
+      footer:
+        value: '/*'
+        style: 
+          use: 'column_header'                
+
